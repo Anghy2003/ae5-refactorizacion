@@ -32,6 +32,11 @@ public class Reserva {
         return periodo != null && periodo.esValido();
     }
 
+    /** Comparacion exacta, como en el codigo heredado: "vip" no es VIP (LB-08). */
+    public boolean esVip() {
+        return "VIP".equals(tipo);
+    }
+
     public String getId() {
         return id;
     }

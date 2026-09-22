@@ -13,23 +13,27 @@ import edu.uees.refactor.infraestructura.RepositorioReservas;
  * colaboradores propios; el servicio solo coordina.
  * Refactorizacion 3 (Ae5): la regla del periodo vive en PeriodoReserva.
  * Refactorizacion 4 (Ae5): la regla del correo vive en Correo.
+ * Refactorizacion 5 (Ae5): la tarifa y el descuento viven en PoliticaPrecios.
  */
 public class ServicioReservas {
 
     static final int HORAS_MINIMAS_ANTICIPACION = 2;
-    static final double TARIFA_BASE = 40;
-    static final double FACTOR_DESCUENTO_VIP = 0.85;
 
+    private final PoliticaPrecios politicaPrecios;
     private final RepositorioReservas repositorio;
     private final NotificadorReservas notificador;
 
     public ServicioReservas() {
-        this(new RepositorioReservas(), new NotificadorReservas());
+        this(new PoliticaPrecios(),
+                new RepositorioReservas(),
+                new NotificadorReservas());
     }
 
     public ServicioReservas(
+            PoliticaPrecios politicaPrecios,
             RepositorioReservas repositorio,
             NotificadorReservas notificador) {
+        this.politicaPrecios = politicaPrecios;
         this.repositorio = repositorio;
         this.notificador = notificador;
     }
@@ -42,7 +46,7 @@ public class ServicioReservas {
             return 0;
         }
 
-        double total = calcularTotal(reserva);
+        double total = politicaPrecios.calcularTotal(reserva);
 
         repositorio.guardar(reserva);
         notificador.enviarConfirmacion(reserva);
@@ -66,13 +70,5 @@ public class ServicioReservas {
 
     private boolean cumpleAnticipacionMinima(int horasAnticipacion) {
         return horasAnticipacion >= HORAS_MINIMAS_ANTICIPACION;
-    }
-
-    private double calcularTotal(Reserva reserva) {
-        double total = TARIFA_BASE;
-        if ("VIP".equals(reserva.getTipo())) {
-            total = total * FACTOR_DESCUENTO_VIP;
-        }
-        return total;
     }
 }
