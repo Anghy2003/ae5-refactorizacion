@@ -1,18 +1,36 @@
 package edu.uees.refactor.service;
 
 import edu.uees.refactor.domain.Reserva;
+import edu.uees.refactor.infraestructura.NotificadorReservas;
+import edu.uees.refactor.infraestructura.RepositorioReservas;
 
 /**
  * Servicio de reservas de tutorias.
  *
  * Refactorizacion 1 (Ae5): las reglas que antes eran literales y
  * condiciones anonimas dentro de procesar() tienen ahora nombre propio.
+ * Refactorizacion 2 (Ae5): la persistencia y la notificacion viven en
+ * colaboradores propios; el servicio solo coordina.
  */
 public class ServicioReservas {
 
     static final int HORAS_MINIMAS_ANTICIPACION = 2;
     static final double TARIFA_BASE = 40;
     static final double FACTOR_DESCUENTO_VIP = 0.85;
+
+    private final RepositorioReservas repositorio;
+    private final NotificadorReservas notificador;
+
+    public ServicioReservas() {
+        this(new RepositorioReservas(), new NotificadorReservas());
+    }
+
+    public ServicioReservas(
+            RepositorioReservas repositorio,
+            NotificadorReservas notificador) {
+        this.repositorio = repositorio;
+        this.notificador = notificador;
+    }
 
     public double procesar(
             Reserva reserva,
@@ -24,14 +42,8 @@ public class ServicioReservas {
 
         double total = calcularTotal(reserva);
 
-        System.out.println(
-                "Guardando reserva " + reserva.getId()
-        );
-
-        System.out.println(
-                "Correo enviado a " + reserva.getCorreo()
-        );
-
+        repositorio.guardar(reserva);
+        notificador.enviarConfirmacion(reserva);
         reserva.confirmar();
 
         return total;
