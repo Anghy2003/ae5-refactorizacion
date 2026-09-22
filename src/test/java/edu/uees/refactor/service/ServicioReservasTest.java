@@ -1,6 +1,7 @@
 package edu.uees.refactor.service;
 
 import edu.uees.refactor.domain.EstadoReserva;
+import edu.uees.refactor.domain.Correo;
 import edu.uees.refactor.domain.PeriodoReserva;
 import edu.uees.refactor.domain.Reserva;
 import org.junit.jupiter.api.AfterEach;
@@ -80,7 +81,7 @@ class ServicioReservasTest {
     @Test
     void correoSinArrobaRetorna0YNoConfirma() {
         // Arrange
-        Reserva reserva = new Reserva("R-003", "incorrecto",
+        Reserva reserva = new Reserva("R-003", new Correo("incorrecto"),
                 new PeriodoReserva(INICIO, INICIO.plusHours(1)), "NORMAL");
 
         // Act
@@ -94,7 +95,7 @@ class ServicioReservasTest {
     @Test
     void correoNuloRetorna0YNoConfirma() {
         // Arrange
-        Reserva reserva = new Reserva("R-003b", null,
+        Reserva reserva = new Reserva("R-003b", new Correo(null),
                 new PeriodoReserva(INICIO, INICIO.plusHours(1)), "NORMAL");
 
         // Act
@@ -108,7 +109,7 @@ class ServicioReservasTest {
     @Test
     void correoConSoloArrobaSigueSiendoAceptado() {
         // Arrange: la regla heredada es debil a proposito; se conserva
-        Reserva reserva = new Reserva("R-003c", "a@",
+        Reserva reserva = new Reserva("R-003c", new Correo("a@"),
                 new PeriodoReserva(INICIO, INICIO.plusHours(1)), "NORMAL");
 
         // Act
@@ -124,7 +125,7 @@ class ServicioReservasTest {
     @Test
     void periodoConFinIgualAlInicioRetorna0YNoConfirma() {
         // Arrange
-        Reserva reserva = new Reserva("R-004", "ana@uees.edu.ec",
+        Reserva reserva = new Reserva("R-004", new Correo("ana@uees.edu.ec"),
                 new PeriodoReserva(INICIO, INICIO), "NORMAL");
 
         // Act
@@ -138,7 +139,7 @@ class ServicioReservasTest {
     @Test
     void periodoConFinAnteriorAlInicioRetorna0YNoConfirma() {
         // Arrange
-        Reserva reserva = new Reserva("R-004b", "ana@uees.edu.ec",
+        Reserva reserva = new Reserva("R-004b", new Correo("ana@uees.edu.ec"),
                 new PeriodoReserva(INICIO, INICIO.minusHours(1)), "NORMAL");
 
         // Act
@@ -246,7 +247,7 @@ class ServicioReservasTest {
     @Test
     void correoInvalidoYUnaHoraSiguenRetornando0() {
         // Arrange: dos defectos a la vez; fija que el rechazo es silencioso
-        Reserva reserva = new Reserva("R-010", "incorrecto",
+        Reserva reserva = new Reserva("R-010", new Correo("incorrecto"),
                 new PeriodoReserva(INICIO, INICIO.plusHours(1)), "NORMAL");
 
         // Act
@@ -261,7 +262,7 @@ class ServicioReservasTest {
     // ------------------------------------------------------------ apoyo
 
     private static Reserva reservaValida(String id, String tipo) {
-        return new Reserva(id, "ana@uees.edu.ec",
+        return new Reserva(id, new Correo("ana@uees.edu.ec"),
                 new PeriodoReserva(INICIO, INICIO.plusHours(1)), tipo);
     }
 

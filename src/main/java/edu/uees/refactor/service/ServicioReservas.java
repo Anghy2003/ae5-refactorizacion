@@ -12,6 +12,7 @@ import edu.uees.refactor.infraestructura.RepositorioReservas;
  * Refactorizacion 2 (Ae5): la persistencia y la notificacion viven en
  * colaboradores propios; el servicio solo coordina.
  * Refactorizacion 3 (Ae5): la regla del periodo vive en PeriodoReserva.
+ * Refactorizacion 4 (Ae5): la regla del correo vive en Correo.
  */
 public class ServicioReservas {
 
@@ -54,18 +55,13 @@ public class ServicioReservas {
         if (reserva == null) {
             return false;
         }
-        if (!tieneCorreoValido(reserva)) {
+        if (!reserva.tieneCorreoValido()) {
             return false;
         }
         if (!reserva.tienePeriodoValido()) {
             return false;
         }
         return cumpleAnticipacionMinima(horasAnticipacion);
-    }
-
-    private boolean tieneCorreoValido(Reserva reserva) {
-        return reserva.getCorreo() != null
-                && reserva.getCorreo().contains("@");
     }
 
     private boolean cumpleAnticipacionMinima(int horasAnticipacion) {

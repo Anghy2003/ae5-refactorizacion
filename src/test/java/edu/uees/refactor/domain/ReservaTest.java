@@ -14,7 +14,7 @@ class ReservaTest {
     @Test
     void reservaNuevaIniciaPendiente() {
         // Arrange
-        Reserva reserva = new Reserva("R-001", "ana@uees.edu.ec",
+        Reserva reserva = new Reserva("R-001", new Correo("ana@uees.edu.ec"),
                 new PeriodoReserva(INICIO, INICIO.plusHours(1)), "NORMAL");
 
         // Act
@@ -27,7 +27,7 @@ class ReservaTest {
     @Test
     void confirmarCambiaElEstadoAConfirmada() {
         // Arrange
-        Reserva reserva = new Reserva("R-001", "ana@uees.edu.ec",
+        Reserva reserva = new Reserva("R-001", new Correo("ana@uees.edu.ec"),
                 new PeriodoReserva(INICIO, INICIO.plusHours(1)), "NORMAL");
 
         // Act

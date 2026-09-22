@@ -1,5 +1,6 @@
 package edu.uees.refactor.infraestructura;
 
+import edu.uees.refactor.domain.Correo;
 import edu.uees.refactor.domain.PeriodoReserva;
 import edu.uees.refactor.domain.Reserva;
 import org.junit.jupiter.api.AfterEach;
@@ -36,7 +37,7 @@ class RepositorioReservasTest {
     @Test
     void guardarEmiteElMensajeHeredadoConElIdDeLaReserva() {
         // Arrange
-        Reserva reserva = new Reserva("R-001", "ana@uees.edu.ec",
+        Reserva reserva = new Reserva("R-001", new Correo("ana@uees.edu.ec"),
                 new PeriodoReserva(INICIO, INICIO.plusHours(1)), "NORMAL");
         RepositorioReservas repositorio = new RepositorioReservas();
 

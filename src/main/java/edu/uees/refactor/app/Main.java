@@ -1,5 +1,6 @@
 package edu.uees.refactor.app;
 
+import edu.uees.refactor.domain.Correo;
 import edu.uees.refactor.domain.PeriodoReserva;
 import edu.uees.refactor.domain.Reserva;
 import edu.uees.refactor.service.ServicioReservas;
@@ -16,7 +17,7 @@ public class Main {
         Reserva reserva =
                 new Reserva(
                         "R-001",
-                        "ana@uees.edu.ec",
+                        new Correo("ana@uees.edu.ec"),
                 new PeriodoReserva(inicio, inicio.plusHours(1)), "VIP");
 
         ServicioReservas servicio =

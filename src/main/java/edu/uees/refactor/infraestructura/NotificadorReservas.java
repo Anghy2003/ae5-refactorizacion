@@ -12,7 +12,7 @@ public class NotificadorReservas {
 
     public void enviarConfirmacion(Reserva reserva) {
         System.out.println(
-                "Correo enviado a " + reserva.getCorreo()
+                "Correo enviado a " + reserva.getCorreo().valor()
         );
     }
 }

@@ -3,14 +3,14 @@ package edu.uees.refactor.domain;
 public class Reserva {
 
     private final String id;
-    private final String correo;
+    private final Correo correo;
     private final PeriodoReserva periodo;
     private final String tipo;
     private EstadoReserva estado = EstadoReserva.PENDIENTE;
 
     public Reserva(
             String id,
-            String correo,
+            Correo correo,
             PeriodoReserva periodo,
             String tipo) {
 
@@ -24,6 +24,10 @@ public class Reserva {
         estado = EstadoReserva.CONFIRMADA;
     }
 
+    public boolean tieneCorreoValido() {
+        return correo != null && correo.esValido();
+    }
+
     public boolean tienePeriodoValido() {
         return periodo != null && periodo.esValido();
     }
@@ -32,7 +36,7 @@ public class Reserva {
         return id;
     }
 
-    public String getCorreo() {
+    public Correo getCorreo() {
         return correo;
     }
 
