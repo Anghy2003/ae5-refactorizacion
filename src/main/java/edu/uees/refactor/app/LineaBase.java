@@ -1,5 +1,6 @@
 package edu.uees.refactor.app;
 
+import edu.uees.refactor.domain.PeriodoReserva;
 import edu.uees.refactor.domain.Reserva;
 import edu.uees.refactor.service.ServicioReservas;
 
@@ -26,42 +27,42 @@ public class LineaBase {
                 "LB-01",
                 "NORMAL valida | correo valido | 5 h",
                 new Reserva("R-001", "ana@uees.edu.ec",
-                        INICIO, INICIO.plusHours(1), "NORMAL"),
+                new PeriodoReserva(INICIO, INICIO.plusHours(1)), "NORMAL"),
                 5);
 
         ejecutar(
                 "LB-02",
                 "VIP valida | correo valido | 5 h",
                 new Reserva("R-002", "ana@uees.edu.ec",
-                        INICIO, INICIO.plusHours(1), "VIP"),
+                new PeriodoReserva(INICIO, INICIO.plusHours(1)), "VIP"),
                 5);
 
         ejecutar(
                 "LB-03",
                 "Correo invalido | \"incorrecto\" | 5 h",
                 new Reserva("R-003", "incorrecto",
-                        INICIO, INICIO.plusHours(1), "NORMAL"),
+                new PeriodoReserva(INICIO, INICIO.plusHours(1)), "NORMAL"),
                 5);
 
         ejecutar(
                 "LB-04",
                 "Periodo invalido | fin = inicio | 5 h",
                 new Reserva("R-004", "ana@uees.edu.ec",
-                        INICIO, INICIO, "NORMAL"),
+                new PeriodoReserva(INICIO, INICIO), "NORMAL"),
                 5);
 
         ejecutar(
                 "LB-05",
                 "Limite valido | 2 h de anticipacion",
                 new Reserva("R-005", "ana@uees.edu.ec",
-                        INICIO, INICIO.plusHours(1), "NORMAL"),
+                new PeriodoReserva(INICIO, INICIO.plusHours(1)), "NORMAL"),
                 2);
 
         ejecutar(
                 "LB-06",
                 "Limite invalido | 1 h de anticipacion",
                 new Reserva("R-006", "ana@uees.edu.ec",
-                        INICIO, INICIO.plusHours(1), "NORMAL"),
+                new PeriodoReserva(INICIO, INICIO.plusHours(1)), "NORMAL"),
                 1);
 
         System.out.println();
@@ -77,14 +78,14 @@ public class LineaBase {
                 "LB-08",
                 "Tipo \"vip\" en minuscula | 5 h",
                 new Reserva("R-008", "ana@uees.edu.ec",
-                        INICIO, INICIO.plusHours(1), "vip"),
+                new PeriodoReserva(INICIO, INICIO.plusHours(1)), "vip"),
                 5);
 
         ejecutar(
                 "LB-09",
                 "Tipo desconocido \"PREMIUM\" | 5 h",
                 new Reserva("R-009", "ana@uees.edu.ec",
-                        INICIO, INICIO.plusHours(1), "PREMIUM"),
+                new PeriodoReserva(INICIO, INICIO.plusHours(1)), "PREMIUM"),
                 5);
     }
 

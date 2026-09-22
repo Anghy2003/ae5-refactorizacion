@@ -1,32 +1,31 @@
 package edu.uees.refactor.domain;
 
-import java.time.LocalDateTime;
-
 public class Reserva {
 
     private final String id;
     private final String correo;
-    private final LocalDateTime inicio;
-    private final LocalDateTime fin;
+    private final PeriodoReserva periodo;
     private final String tipo;
     private EstadoReserva estado = EstadoReserva.PENDIENTE;
 
     public Reserva(
             String id,
             String correo,
-            LocalDateTime inicio,
-            LocalDateTime fin,
+            PeriodoReserva periodo,
             String tipo) {
 
         this.id = id;
         this.correo = correo;
-        this.inicio = inicio;
-        this.fin = fin;
+        this.periodo = periodo;
         this.tipo = tipo;
     }
 
     public void confirmar() {
         estado = EstadoReserva.CONFIRMADA;
+    }
+
+    public boolean tienePeriodoValido() {
+        return periodo != null && periodo.esValido();
     }
 
     public String getId() {
@@ -37,12 +36,8 @@ public class Reserva {
         return correo;
     }
 
-    public LocalDateTime getInicio() {
-        return inicio;
-    }
-
-    public LocalDateTime getFin() {
-        return fin;
+    public PeriodoReserva getPeriodo() {
+        return periodo;
     }
 
     public String getTipo() {

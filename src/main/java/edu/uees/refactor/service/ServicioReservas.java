@@ -11,6 +11,7 @@ import edu.uees.refactor.infraestructura.RepositorioReservas;
  * condiciones anonimas dentro de procesar() tienen ahora nombre propio.
  * Refactorizacion 2 (Ae5): la persistencia y la notificacion viven en
  * colaboradores propios; el servicio solo coordina.
+ * Refactorizacion 3 (Ae5): la regla del periodo vive en PeriodoReserva.
  */
 public class ServicioReservas {
 
@@ -56,7 +57,7 @@ public class ServicioReservas {
         if (!tieneCorreoValido(reserva)) {
             return false;
         }
-        if (!tienePeriodoValido(reserva)) {
+        if (!reserva.tienePeriodoValido()) {
             return false;
         }
         return cumpleAnticipacionMinima(horasAnticipacion);
@@ -65,12 +66,6 @@ public class ServicioReservas {
     private boolean tieneCorreoValido(Reserva reserva) {
         return reserva.getCorreo() != null
                 && reserva.getCorreo().contains("@");
-    }
-
-    private boolean tienePeriodoValido(Reserva reserva) {
-        return reserva.getInicio() != null
-                && reserva.getFin() != null
-                && reserva.getFin().isAfter(reserva.getInicio());
     }
 
     private boolean cumpleAnticipacionMinima(int horasAnticipacion) {
