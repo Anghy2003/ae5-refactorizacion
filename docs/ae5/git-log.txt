@@ -1,0 +1,17 @@
+$ git log --oneline --decorate main..ae5-refactorizacion
+7d8aa1e (HEAD -> ae5-refactorizacion, ae5/ae5-refactorizacion) docs: enlazar el repositorio de Ae5 y agregar capturas de pruebas y comparacion
+5300177 docs: documentar las refactorizaciones, la comparacion y las evidencias de Ae5
+dbcdaaa refactor: extraer PoliticaPrecios y mover la interpretacion del tipo a Reserva
+7c17983 refactor: introducir Correo como objeto de valor
+5da526e refactor: agrupar inicio y fin en el objeto de valor PeriodoReserva
+4312cfd refactor: extraer RepositorioReservas y NotificadorReservas del servicio
+8bb40a2 refactor: nombrar las reglas y descomponer las validaciones de procesar
+8ce3808 docs: conservar copia del codigo inicial para la comparacion de Ae5
+d1f2a2b test: caracterizar el comportamiento heredado de ServicioReservas y Reserva
+686dabd chore: agregar JUnit 5 y Surefire para la red de seguridad de Ae5
+
+$ git remote -v
+ae5	https://github.com/Anghy2003/ae5-refactorizacion.git (fetch)
+ae5	https://github.com/Anghy2003/ae5-refactorizacion.git (push)
+origin	https://github.com/Anghy2003/proyecto-.git (fetch)
+origin	https://github.com/Anghy2003/proyecto-.git (push)
