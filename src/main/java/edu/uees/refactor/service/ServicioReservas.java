@@ -3,53 +3,73 @@ package edu.uees.refactor.service;
 import edu.uees.refactor.domain.Reserva;
 
 /**
- * Código heredado intencional para el Laboratorio 1.
+ * Servicio de reservas de tutorias.
  *
- * IMPORTANTE:
- * No refactorizar antes de completar la línea base,
- * el diagnóstico y el plan de refactorización.
+ * Refactorizacion 1 (Ae5): las reglas que antes eran literales y
+ * condiciones anonimas dentro de procesar() tienen ahora nombre propio.
  */
 public class ServicioReservas {
 
+    static final int HORAS_MINIMAS_ANTICIPACION = 2;
+    static final double TARIFA_BASE = 40;
+    static final double FACTOR_DESCUENTO_VIP = 0.85;
+
     public double procesar(
-            Reserva r,
+            Reserva reserva,
             int horasAnticipacion) {
 
-        if (r == null) {
+        if (!esProcesable(reserva, horasAnticipacion)) {
             return 0;
         }
 
-        if (r.getCorreo() == null
-                || !r.getCorreo().contains("@")) {
-            return 0;
-        }
-
-        if (r.getInicio() == null
-                || r.getFin() == null
-                || !r.getFin().isAfter(r.getInicio())) {
-            return 0;
-        }
-
-        if (horasAnticipacion < 2) {
-            return 0;
-        }
-
-        double total = 40;
-
-        if ("VIP".equals(r.getTipo())) {
-            total = total * 0.85;
-        }
+        double total = calcularTotal(reserva);
 
         System.out.println(
-                "Guardando reserva " + r.getId()
+                "Guardando reserva " + reserva.getId()
         );
 
         System.out.println(
-                "Correo enviado a " + r.getCorreo()
+                "Correo enviado a " + reserva.getCorreo()
         );
 
-        r.confirmar();
+        reserva.confirmar();
 
+        return total;
+    }
+
+    private boolean esProcesable(Reserva reserva, int horasAnticipacion) {
+        if (reserva == null) {
+            return false;
+        }
+        if (!tieneCorreoValido(reserva)) {
+            return false;
+        }
+        if (!tienePeriodoValido(reserva)) {
+            return false;
+        }
+        return cumpleAnticipacionMinima(horasAnticipacion);
+    }
+
+    private boolean tieneCorreoValido(Reserva reserva) {
+        return reserva.getCorreo() != null
+                && reserva.getCorreo().contains("@");
+    }
+
+    private boolean tienePeriodoValido(Reserva reserva) {
+        return reserva.getInicio() != null
+                && reserva.getFin() != null
+                && reserva.getFin().isAfter(reserva.getInicio());
+    }
+
+    private boolean cumpleAnticipacionMinima(int horasAnticipacion) {
+        return horasAnticipacion >= HORAS_MINIMAS_ANTICIPACION;
+    }
+
+    private double calcularTotal(Reserva reserva) {
+        double total = TARIFA_BASE;
+        if ("VIP".equals(reserva.getTipo())) {
+            total = total * FACTOR_DESCUENTO_VIP;
+        }
         return total;
     }
 }
