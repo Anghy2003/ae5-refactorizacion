@@ -1,0 +1,15 @@
+$ md5sum docs/ae5/salida-*.txt
+3a1b8525ac10e7399d73e7e535bcc839 *docs/ae5/salida-00-caracterizacion.txt
+3a1b8525ac10e7399d73e7e535bcc839 *docs/ae5/salida-01-decompose-conditional.txt
+3a1b8525ac10e7399d73e7e535bcc839 *docs/ae5/salida-02-extract-class-infraestructura.txt
+3a1b8525ac10e7399d73e7e535bcc839 *docs/ae5/salida-03-periodo-reserva.txt
+3a1b8525ac10e7399d73e7e535bcc839 *docs/ae5/salida-04-correo.txt
+3a1b8525ac10e7399d73e7e535bcc839 *docs/ae5/salida-05-politica-precios.txt
+3a1b8525ac10e7399d73e7e535bcc839 *docs/ae5/salida-linea-base-original.txt
+
+identica  docs/ae5/salida-00-caracterizacion.txt
+identica  docs/ae5/salida-01-decompose-conditional.txt
+identica  docs/ae5/salida-02-extract-class-infraestructura.txt
+identica  docs/ae5/salida-03-periodo-reserva.txt
+identica  docs/ae5/salida-04-correo.txt
+identica  docs/ae5/salida-05-politica-precios.txt

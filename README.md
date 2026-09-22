@@ -1,4 +1,47 @@
-# Semana 6 | Laboratorio evaluado 1 · Diagnóstico técnico de código heredado
+# Semana 6 | Sistema de reservas de tutorías · del diagnóstico a la refactorización
+
+Este repositorio tiene dos entregas sobre el mismo código heredado:
+
+| Rama | Entrega | Estado del código |
+|---|---|---|
+| `main` | Laboratorio 1 · Diagnóstico técnico | **Código inicial**, sin modificar, con línea base y diagnóstico |
+| `ae5-refactorizacion` | Ae5 · Refactorización respaldada por pruebas | **Código final**: 31 pruebas JUnit 5 y cinco refactorizaciones, una por commit |
+
+## Ae5 | Cómo ejecutar
+
+```bash
+git checkout ae5-refactorizacion
+mvn clean test                                                   # 31 pruebas, BUILD SUCCESS
+mvn exec:java -Dexec.mainClass="edu.uees.refactor.app.Main"      # caso VIP: Total 34.0
+mvn exec:java -Dexec.mainClass="edu.uees.refactor.app.LineaBase" # los nueve escenarios
+sh docs/ae5/verificar.sh final   # pruebas + comparación byte a byte con la línea base
+```
+
+Comparar código inicial y final:
+
+```bash
+git diff main..ae5-refactorizacion -- src/main
+git log --oneline main..ae5-refactorizacion
+```
+
+El reporte de las cinco refactorizaciones, la comparación antes/después y las
+decisiones de alcance están en [`docs/08_REFACTORIZACION_AE5.md`](docs/08_REFACTORIZACION_AE5.md);
+las evidencias de cada paso (`tests-*.txt`, `salida-*.txt`, MD5) en `docs/ae5/`.
+
+### Estructura final
+
+```text
+src/main/java/edu/uees/refactor/
+├── app/            Main, LineaBase (ejecutor de los nueve escenarios)
+├── domain/         Reserva, EstadoReserva, Correo, PeriodoReserva
+├── service/        ServicioReservas (coordina), PoliticaPrecios
+└── infraestructura/ RepositorioReservas, NotificadorReservas
+src/test/java/...   7 clases de prueba, 31 casos AAA
+```
+
+---
+
+# Laboratorio 1 · Diagnóstico técnico de código heredado
 
 Diagnóstico del sistema de reservas de tutorías heredado. El objetivo de este
 laboratorio **no** es mejorar el código: es comprender qué hace, evidenciarlo y
