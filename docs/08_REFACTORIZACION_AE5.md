@@ -1,6 +1,7 @@
 # Ae5 | Refactorización respaldada por pruebas unitarias
 
-Rama `ae5-refactorizacion`. La rama `main` conserva el código inicial (estado
+Repositorio: https://github.com/Anghy2003/ae5-refactorizacion (rama
+`ae5-refactorizacion`). La rama `main` conserva el código inicial (estado
 final del Laboratorio 1); esta rama contiene la red de seguridad y las cinco
 refactorizaciones, una por commit.
 

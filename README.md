@@ -7,6 +7,10 @@ Este repositorio tiene dos entregas sobre el mismo código heredado:
 | `main` | Laboratorio 1 · Diagnóstico técnico | **Código inicial**, sin modificar, con línea base y diagnóstico |
 | `ae5-refactorizacion` | Ae5 · Refactorización respaldada por pruebas | **Código final**: 31 pruebas JUnit 5 y cinco refactorizaciones, una por commit |
 
+- Repositorio de la Ae5 (ambas ramas): https://github.com/Anghy2003/ae5-refactorizacion
+- Repositorio del Laboratorio 1: https://github.com/Anghy2003/proyecto-
+- Autora: Andrea Illescas · Diseño de Software (UCOM0310) · Semana 6
+
 ## Ae5 | Cómo ejecutar
 
 ```bash
